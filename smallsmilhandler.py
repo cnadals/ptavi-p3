@@ -6,9 +6,9 @@ from xml.sax.handler import ContentHandler
 
 class SmallSMILHandler(ContentHandler):
 
-	def __init__ (self):
+    def __init__ (self):
 
-		pass
+        pass
 
     def startElement(self, name, attrs):
 
@@ -28,8 +28,8 @@ class SmallSMILHandler(ContentHandler):
             self.begin = attrs.get('begin',"")
             self.dur = attrs.get('dur',"")
         elif name == 'audio':
-        	self.begin = attrs.get('begin',"")
-        	self.dur = attrs.get('dur',"")
+            self.begin = attrs.get('begin',"")
+            self.dur = attrs.get('dur',"")
         elif name == 'textstream':
-        	self.src = attrs.get('src',"")
-        	self.region = attrs.get('region',"")
+            self.src = attrs.get('src',"")
+            self.region = attrs.get('region',"")
