@@ -19,22 +19,22 @@ class SmallSMILHandler(ContentHandler):
         if name == 'root-layout':
             # De esta manera tomamos los valores de los atributos
             self.width = attrs.get('root-layout',"")
-            self.height = 
-            self.backgroundcolor =
+            self.height = attrs.get('root-layout',"")
+            self.backgroundcolor = attrs.get('root-layout',"")
         elif name == 'region':
-            self.id = 1
-            self.top =
-            self.bottom =
-            self.left =
-            self.right =
+            self.id = attrs.get('region',"")
+            self.top = attrs.get('region',"")
+            self.bottom = attrs.get('region',"")
+            self.left = attrs.get('region',"")
+            self.right = attrs.get('region',"")
         elif name == 'img':
-            self.src = 1
-            self.region =
-            self.begin =
-            self.dur =
+            self.src = attrs.get('img',"")
+            self.region = attrs.get('img',"")
+            self.begin = attrs.get('img',"")
+            self.dur = attrs.get('img',"")
         elif name == 'audio':
-        	self.begin = 1
-        	self.dur =
+        	self.begin = attrs.get('audio',"")
+        	self.dur = attrs.get('audio',"")
         elif name == 'textstream':
-        	self.src =
-        	self.region =
+        	self.src = attrs.get('textstream',"")
+        	self.region = attrs.get('textstream',"")
