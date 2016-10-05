@@ -4,9 +4,10 @@
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+
 class SmallSMILHandler(ContentHandler):
 
-    def __init__ (self):
+    def __init__(self):
 
         self.width = ""
         self.height = ""
@@ -30,42 +31,42 @@ class SmallSMILHandler(ContentHandler):
     def startElement(self, name, attrs):
 
         if name == 'root-layout':
-            self.width = attrs.get('width',"")
-            self.height = attrs.get('height',"")
-            self.backgroundcolor = attrs.get('backgroundcolor',"")
-            atributo = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
-            atributo['tag'] = name
-            self.lista.append(atributo)
+            self.width = attrs.get('width', "")
+            self.height = attrs.get('height', "")
+            self.backgroundcolor = attrs.get('backgroundcolor', "")
+            at = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
+            at['tag'] = name
+            self.lista.append(at)
             #print(self.lista)
         elif name == 'region':
-            self.id = attrs.get('id',"")
-            self.top = attrs.get('top',"")
-            self.bottom = attrs.get('bottom',"")
-            self.left = attrs.get('left',"")
-            self.right = attrs.get('right',"")
-            atributo = {'id': self.id, 'top': self.top, 'bottom': self.bottom, 'right': self.right, 'left': self.left}
-            atributo['tag'] = name
-            self.lista.append(atributo)
+            self.id = attrs.get('id', "")
+            self.top = attrs.get('top', "")
+            self.bottom = attrs.get('bottom', "")
+            self.left = attrs.get('left', "")
+            self.right = attrs.get('right', "")
+            at = {'id': self.id, 'top': self.top, 'bottom': self.bottom, 'right': self.right, 'left': self.left}
+            at['tag'] = name
+            self.lista.append(at)
         elif name == 'img':
-            self.src = attrs.get('src',"")
-            self.region = attrs.get('region',"")
-            self.begin = attrs.get('begin',"")
-            self.dur = attrs.get('dur',"")
-            atributo = {'src': self.img_src, 'region': self.img_region, 'begin': self.img_begin, 'dur': self.img_dur}
-            atributo['tag'] = name
-            self.lista.append(atributo)
+            self.src = attrs.get('src', "")
+            self.region = attrs.get('region', "")
+            self.begin = attrs.get('begin', "")
+            self.dur = attrs.get('dur', "")
+            at = {'src': self.img_src, 'region': self.img_region, 'begin': self.img_begin, 'dur': self.img_dur}
+            at['tag'] = name
+            self.lista.append(at)
         elif name == 'audio':
-            self.begin = attrs.get('begin',"")
-            self.dur = attrs.get('dur',"")
-            atributo = {'src': self.aud_src, 'begin': self.aud_begin, 'dur': self.aud_dur}
-            atributo['tag'] = name
-            self.lista.append(atributo)
+            self.begin = attrs.get('begin', "")
+            self.dur = attrs.get('dur', "")
+            at = {'src': self.aud_src, 'begin': self.aud_begin, 'dur': self.aud_dur}
+            at['tag'] = name
+            self.lista.append(at)
         elif name == 'textstream':
-            self.src = attrs.get('src',"")
-            self.region = attrs.get('region',"")
-            atributo = {'src': self.text_src, 'region': self.text_region}
-            atributo['tag'] = name
-            self.lista.append(atributo)
+            self.src = attrs.get('src', "")
+            self.region = attrs.get('region', "")
+            at = {'src': self.text_src, 'region': self.text_region}
+            at['tag'] = name
+            self.lista.append(at)
 
     def get_tags(self):
         return self.lista
