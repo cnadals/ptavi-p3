@@ -37,7 +37,6 @@ class SmallSMILHandler(ContentHandler):
             at = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
             at['tag'] = name
             self.lista.append(at)
-            #print(self.lista)
         elif name == 'region':
             self.id = attrs.get('id', "")
             self.top = attrs.get('top', "")
