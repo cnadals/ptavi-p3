@@ -34,7 +34,9 @@ class SmallSMILHandler(ContentHandler):
             self.width = attrs.get('width', "")
             self.height = attrs.get('height', "")
             self.backgroundcolor = attrs.get('backgroundcolor', "")
-            at = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
+            at = {'width': self.width}
+            at = {'height': self.height}
+            at = {'backgroundcolor': self.backgroundcolor}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'region':
@@ -43,7 +45,11 @@ class SmallSMILHandler(ContentHandler):
             self.bottom = attrs.get('bottom', "")
             self.left = attrs.get('left', "")
             self.right = attrs.get('right', "")
-            at = {'id': self.id, 'top': self.top, 'bottom': self.bottom, 'right': self.right, 'left': self.left}
+            at = {'id': self.id}
+            at = {'top': self.top}
+            at = {'bottom': self.bottom}
+            at = {'right': self.right}
+            at = {'left': self.left}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'img':
@@ -51,19 +57,25 @@ class SmallSMILHandler(ContentHandler):
             self.region = attrs.get('region', "")
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            at = {'src': self.img_src, 'region': self.img_region, 'begin': self.img_begin, 'dur': self.img_dur}
+            at = {'src': self.img_src}
+            at = {'region': self.img_region}
+            at = {'begin': self.img_begin}
+            at = {'dur': self.img_dur}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'audio':
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            at = {'src': self.aud_src, 'begin': self.aud_begin, 'dur': self.aud_dur}
+            at = {'src': self.aud_src}
+            at = {'begin': self.aud_begin}
+            at = {'dur': self.aud_dur}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'textstream':
             self.src = attrs.get('src', "")
             self.region = attrs.get('region', "")
-            at = {'src': self.text_src, 'region': self.text_region}
+            at = {'src': self.text_src}
+            at = {'region': self.text_region}
             at['tag'] = name
             self.lista.append(at)
 
@@ -77,5 +89,5 @@ if __name__ == "__main__":
         sHandler = SmallSMILHandler()
         parser.setContentHandler(sHandler)
         parser.parse(open('karaoke.smil'))
-        misDatos = sHandler.get_tags()
-        print(misDatos)
+        Datos = sHandler.get_tags()
+        print(Datos)
