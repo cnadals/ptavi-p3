@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
 
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
-import sys
-import os
 from smallsmilhandler import SmallSMILHandler
+from xml.sax.handler import ContentHandler
+from xml.sax import make_parser
+import sys
+import json
 
 
 class KaraokeLocal():
@@ -16,23 +16,6 @@ class KaraokeLocal():
         parser.setContentHandler(sHandler)
         parser.parse(open(fichero))
         self.lista = sHandler.get_tags()
-
-    def do_local(self):
-        for diccionario in self.lista:
-            for clave in diccionario:
-                if clave != 'etiqueta' and diccionario[clave] != 'Null':
-                    if clave == 'src':
-                        os.system("wget -q " + diccionario[clave])
-                        diccionario[clave] = diccionario[clave].split('/')[-1]
-
-    def __str__(self):
-        salida = ""
-        for diccionario in self.lista:
-            salida += str('\n' + diccionario['etiqueta'] + '\t')
-            for clave in diccionario:
-                if clave != 'etiqueta' and diccionario[clave] != 'Null':
-                    salida += str(clave + '="' + diccionario[clave] + '"\t')
-        return salida
 
 if __name__ == "__main__":
 
