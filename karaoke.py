@@ -7,32 +7,28 @@ from xml.sax import make_parser
 import sys
 import json
 
-#class karaoke(SmallSMILHandler):
-
-def init(fichero):
-    parser = make_parser()
-    sHandler = SmallSMILHandler()
-    parser.setContentHandler(sHandler)
-    parser.parse(open(fichero))
-    return sHandler.get_tags()
+parser = make_parser()
+sHandler = SmallSMILHandler()
+parser.setContentHandler(sHandler)
+misdatos = sHandler.get_tags()
 
 #Tengo que sacar cada diccionario de la lista de diccionarios
-def imprimirdatos(Lista):
-    for datos in Lista: #separo cada diccionario: datos
-        datosetiqueta = datos['tag'] #a partir de aqui, son los datos de la etiqueta
+def imprimirdatos(misdatos):
+    datosetiqueta = ""
+    for datos in misdatos: #separo cada diccionario: datos
+        datosetiqueta += datos['tag'] #a partir de aqui, son los datos de la etiqueta
         del datos['tag'] #borro la etiqueta para quedarme con "el resto"
-        print(datosetiqueta)
-        for info in datos: #dato es cada atributo del diccionario
+        for info in datos: #info es cada atributo del diccionario
             numero = datos[info] #numero es el valor de cada atributo
-            datosetiqueta = datosetiqueta + '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta como pide
-        print(datosetiqueta)
-        datosetiqueta = ' '
+            datosetiqueta += '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta
+        datosetiqueta += '\n'
+    return datosetiqueta
 
 #Guarda el archivo en formato json
-def to_json(Lista):
+def to_json(misdatos):
     archivosmil = sys.argv[1] #cojo el archivo
     archivojson = open(archivosmil.split('.')[0] + '.json', 'w') #cambio el formato del archivo
-    jsoncontent = json.dumps(Lista) 
+    jsoncontent = json.dumps(misdatos)
     archivojson.write(jsoncontent)
 
 if __name__ == "__main__":
@@ -42,7 +38,6 @@ if __name__ == "__main__":
     except IndexError:
         sys.exit('Usage: python karaoke.py file.smil.')
 
-    Lista = init(fichero)
-    imprimirdatos(Lista)
-    to_json(Lista)
-    #GREGORIO DICE: imprime primero tag y luego sus atributos
+    parser.parse(open(fichero))
+    print(imprimirdatos(misdatos))
+    to_json(misdatos)
