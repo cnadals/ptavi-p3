@@ -16,10 +16,10 @@ class SmallSMILHandler(ContentHandler):
         if name == 'root-layout':
             self.width = attrs.get('width', "")
             self.height = attrs.get('height', "")
-            self.backgroundcolor = attrs.get('backgroundcolor', "")
+            self.backgroundcolor = attrs.get('background-color', "")
             at = {'width': self.width,
                 'height': self.height,
-                'backgroundcolor': self.backgroundcolor}
+                'background-color': self.backgroundcolor}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'region':
