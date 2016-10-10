@@ -20,12 +20,12 @@ class KaraokeLocal():
     #Tengo que sacar cada diccionario de la lista de diccionarios y 
     def imprimirdatos(lista):
         for datos in lista: #separo cada diccionario: datos
-            datatributos = datos['tag'] #a partir de aqui, son los datos del "titulo"
-            del datos['tag'] #borro la etiqueta para quedarme con la info
-            for info in datos:    #dato es cada atributo del diccionario
-                numero = datos[info]
-                datatributos = datatributos + '\t' + info + '=' + '"' + numero + '"' 
-            print(datatributos)
+            datosetiqueta = datos['tag'] #a partir de aqui, son los datos de la etiqueta
+            del datos['tag'] #borro la etiqueta para quedarme con "el resto"
+            for info in datos: #dato es cada atributo del diccionario
+                numero = datos[info] #numero es el valor de cada atributo
+                datosetiqueta = datosetiqueta + '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta como pide
+            print(datosetiqueta)
 
 if __name__ == "__main__":
 
