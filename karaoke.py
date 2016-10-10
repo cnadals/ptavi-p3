@@ -9,7 +9,8 @@ import json
 import sys
 import urllib.request
 
-class KaraokeLocal():
+
+class KaraokeLocal()
 
     def init(self, fichero):
         parser = make_parser()
@@ -22,34 +23,32 @@ class KaraokeLocal():
 
     def str(self, datos):
         datosetiqueta = ""
-        for data in datos: #separo cada diccionario: datos
-            datosetiqueta += data['tag'] #a partir de aqui, son los datos de la etiqueta
-            for info in data: #info es cada atributo del diccionario
-                numero = data[info] #numero es el valor de cada atributo
-                datosetiqueta += '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta
+        for data in datos:
+            datosetiqueta += data['tag']
+            for info in data:
+                numero = data[info]
+                datosetiqueta += '\t' + info + '=' + '"' + numero + '"'
             datosetiqueta += '\n'
         return datosetiqueta
 
-    #Tengo que sacar cada diccionario de la lista de diccionarios
     def do_local(self, datos):
         datosetiqueta = ""
-        for data in datos: #separo cada diccionario: datos
-            datosetiqueta += data['tag'] #a partir de aqui, son los datos de la etiqueta
-            for info in data: #info es cada atributo del diccionario
-                numero = data[info] #numero es el valor de cada atributo
-                if (numero.startswith('http://')): #miro a ver desde donde inicia
-                    numeroNuevo = numero.split('/')[-1] #cojo de la ultima / hasta el final
-                    datosetiqueta += '\t' + info + '=' + '"' + numeroNuevo + '"' #aqui recorto el valor del atributo src que empieza por http
-                    urlretrieve(numero, numeroNuevo) #descargo el fichero: de internet a local
+        for data in datos:
+            datosetiqueta += data['tag']
+            for info in data:
+                numero = data[info]
+                if (numero.startswith('http://')):
+                    numNuevo = numero.split('/')[-1]
+                    datosetiqueta += '\t' + info + '=' + '"' + numNuevo + '"'
+                    urlretrieve(numero, numNuevo)
                 else:
-                    datosetiqueta += '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta
+                    datosetiqueta += '\t' + info + '=' + '"' + numero + '"'
             datosetiqueta += '\n'
         return datosetiqueta
 
-    #Guarda el archivo en formato json
-    def to_json(misdatos):
-        archivosmil = sys.argv[1] #cojo el archivo
-        archivojson = open(archivosmil.split('.')[0] + '.json', 'w') #cambio el formato del archivo
+    def do_json(misdatos):
+        archivosmil = sys.argv[1]
+        archivojson = open(archivosmil.split('.')[0] + '.json', 'w')
         jsoncontent = json.dumps(misdatos)
         archivojson.write(jsoncontent)
 
