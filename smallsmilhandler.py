@@ -17,9 +17,8 @@ class SmallSMILHandler(ContentHandler):
             self.width = attrs.get('width', "")
             self.height = attrs.get('height', "")
             self.backgroundcolor = attrs.get('background-color', "")
-            at = {'width': self.width,
-                'height': self.height,
-                'background-color': self.backgroundcolor}
+            at = {'width': self.width, 'height': self.height, 
+                  'background-color': self.backgroundcolor}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'region':
@@ -28,11 +27,9 @@ class SmallSMILHandler(ContentHandler):
             self.bottom = attrs.get('bottom', "")
             self.left = attrs.get('left', "")
             self.right = attrs.get('right', "")
-            at = {'id': self.id,
-                'top': self.top,
-                'bottom': self.bottom,
-                'right': self.right,
-                'left': self.left}
+            at = {'id': self.id, 'top': self.top,
+                  'bottom': self.bottom, 'right': self.right,
+                  'left': self.left}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'img':
@@ -40,25 +37,21 @@ class SmallSMILHandler(ContentHandler):
             self.region = attrs.get('region', "")
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            at = {'src': self.src,
-                'region': self.region,
-                'begin': self.begin,
-                'dur': self.dur}
+            at = {'src': self.src, 'region': self.region,
+                  'begin': self.begin, 'dur': self.dur}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'audio':
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            at = {'src': self.src,
-                'begin': self.begin,
-                'dur': self.dur}
+            at = {'src': self.src, 'begin': self.begin, 
+                  'dur': self.dur}
             at['tag'] = name
             self.lista.append(at)
         elif name == 'textstream':
             self.src = attrs.get('src', "")
             self.region = attrs.get('region', "")
-            at = {'src': self.src,
-                'region': self.region}
+            at = {'src': self.src, 'region': self.region}
             at['tag'] = name
             self.lista.append(at)
 
