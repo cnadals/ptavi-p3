@@ -10,7 +10,7 @@ import sys
 import urllib.request
 
 
-class KaraokeLocal()
+class KaraokeLocal():
 
     def init(self, fichero):
         parser = make_parser()
