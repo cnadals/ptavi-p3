@@ -7,6 +7,7 @@ from xml.sax import make_parser
 import sys
 import json
 
+#class karaoke(SmallSMILHandler):
 
 def init(fichero):
     parser = make_parser()
@@ -20,10 +21,12 @@ def imprimirdatos(Lista):
     for datos in Lista: #separo cada diccionario: datos
         datosetiqueta = datos['tag'] #a partir de aqui, son los datos de la etiqueta
         del datos['tag'] #borro la etiqueta para quedarme con "el resto"
+        print(datosetiqueta)
         for info in datos: #dato es cada atributo del diccionario
             numero = datos[info] #numero es el valor de cada atributo
             datosetiqueta = datosetiqueta + '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta como pide
         print(datosetiqueta)
+        datosetiqueta = ' '
 
 #Guarda el archivo en formato json
 def to_json(Lista):
