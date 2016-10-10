@@ -8,16 +8,16 @@ import sys
 import json
 
 
-def __init__(self, fichero):
+def init(fichero):
     parser = make_parser()
     sHandler = SmallSMILHandler()
     parser.setContentHandler(sHandler)
     parser.parse(open(fichero))
-    lista = sHandler.get_tags()
+    return sHandler.get_tags()
 
-#Tengo que sacar cada diccionario de la lista de diccionarios y 
-def imprimirdatos(lista):
-    for datos in lista: #separo cada diccionario: datos
+#Tengo que sacar cada diccionario de la lista de diccionarios
+def imprimirdatos(Lista):
+    for datos in Lista: #separo cada diccionario: datos
         datosetiqueta = datos['tag'] #a partir de aqui, son los datos de la etiqueta
         del datos['tag'] #borro la etiqueta para quedarme con "el resto"
         for info in datos: #dato es cada atributo del diccionario
@@ -26,10 +26,10 @@ def imprimirdatos(lista):
         print(datosetiqueta)
 
 #Guarda el archivo en formato json
-def to_json(lista):
+def to_json(Lista):
     archivosmil = sys.argv[1] #cojo el archivo
     archivojson = open(archivosmil.split('.')[0] + '.json', 'w') #cambio el formato del archivo
-    jsoncontent = json.dumps(lista) 
+    jsoncontent = json.dumps(Lista) 
     archivojson.write(jsoncontent)
 
 if __name__ == "__main__":
@@ -39,8 +39,7 @@ if __name__ == "__main__":
     except IndexError:
         sys.exit('Usage: python karaoke.py file.smil.')
 
-    karaoke = KaraokeLocal(fichero)
-    parser.parse(open(fichero))
-    imprimirdatos(lista)
-    to_json(lista)
+    Lista = init(fichero)
+    imprimirdatos(Lista)
+    to_json(Lista)
     #GREGORIO DICE: imprime primero tag y luego sus atributos
