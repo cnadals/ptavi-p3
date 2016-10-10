@@ -27,6 +27,13 @@ class KaraokeLocal():
                 datosetiqueta = datosetiqueta + '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta como pide
             print(datosetiqueta)
 
+#Guarda el archivo en formato json
+    def to_json(lista):
+        archivosmil = sys.argv[1]
+        archivojson = open(archivosmil.split('.')[0] + '.json', 'w')
+        jsoncontent = json.dumps(lista)
+        archivojson.write(jsoncontent)
+
 if __name__ == "__main__":
 
     try:
@@ -35,6 +42,9 @@ if __name__ == "__main__":
         sys.exit('Usage: python karaoke.py file.smil.')
 
     karaoke = KaraokeLocal(fichero)
+    parser.parse(open(fichero))
     imprimirdatos(lista)
+    to_json(lista)
+
 
     #imprime primero tag y luego sus atributos
