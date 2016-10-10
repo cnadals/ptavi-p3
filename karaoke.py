@@ -1,11 +1,13 @@
-#!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
 from smallsmilhandler import SmallSMILHandler
 from xml.sax.handler import ContentHandler
 from xml.sax import make_parser
+from smallsmilhandler import SmallSMILHandler
 import sys
 import json
+import urllib.request
 
 parser = make_parser()
 sHandler = SmallSMILHandler()
