@@ -17,7 +17,7 @@ class SmallSMILHandler(ContentHandler):
             self.width = attrs.get('width', "")
             self.height = attrs.get('height', "")
             self.backgroundcolor = attrs.get('background-color', "")
-            at = {'width': self.width, 'height': self.height, 
+            at = {'width': self.width, 'height': self.height,
                   'background-color': self.backgroundcolor}
             at['tag'] = name
             self.lista.append(at)
@@ -44,7 +44,7 @@ class SmallSMILHandler(ContentHandler):
         elif name == 'audio':
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            at = {'src': self.src, 'begin': self.begin, 
+            at = {'src': self.src, 'begin': self.begin,
                   'dur': self.dur}
             at['tag'] = name
             self.lista.append(at)
