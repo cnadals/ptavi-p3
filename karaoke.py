@@ -4,9 +4,9 @@
 from smallsmilhandler import SmallSMILHandler
 from xml.sax.handler import ContentHandler
 from xml.sax import make_parser
-from smallsmilhandler import SmallSMILHandler
-import sys
+from urllib.request import urlretrieve
 import json
+import sys
 import urllib.request
 
 parser = make_parser()
@@ -22,7 +22,12 @@ def imprimirdatos(misdatos):
         del datos['tag'] #borro la etiqueta para quedarme con "el resto"
         for info in datos: #info es cada atributo del diccionario
             numero = datos[info] #numero es el valor de cada atributo
-            datosetiqueta += '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta
+            if (numero.startswith('http')): #miro a ver desde donde inicia
+                numeroNuevo = numero.split('/')[-1] #cojo de la ultima / hasta el final
+                datosetiqueta += '\t' + info + '=' + '"' + numeroNuevo + '"' #aqui recorto el valor del atributo src que empieza por http
+                urlretrieve(numero,numeroNuevo) #descargo el fichero --> de internet a local
+            else:
+                datosetiqueta += '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta
         datosetiqueta += '\n'
     return datosetiqueta
 
