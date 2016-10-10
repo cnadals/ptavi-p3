@@ -4,8 +4,10 @@
 from smallsmilhandler import SmallSMILHandler
 from xml.sax.handler import ContentHandler
 from xml.sax import make_parser
+from smallsmilhandler import SmallSMILHandler
 import sys
 import json
+import urllib.request
 
 parser = make_parser()
 sHandler = SmallSMILHandler()
