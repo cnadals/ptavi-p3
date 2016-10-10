@@ -25,7 +25,7 @@ def imprimirdatos(misdatos):
             if (numero.startswith('http')): #miro a ver desde donde inicia
                 numeroNuevo = numero.split('/')[-1] #cojo de la ultima / hasta el final
                 datosetiqueta += '\t' + info + '=' + '"' + numeroNuevo + '"' #aqui recorto el valor del atributo src que empieza por http
-                urlretrieve(numero,numeroNuevo) #descargo el fichero --> de internet a local
+                urlretrieve(numero, numeroNuevo) #descargo el fichero --> de internet a local
             else:
                 datosetiqueta += '\t' + info + '=' + '"' + numero + '"' #imprimo los datos de la etiqueta
         datosetiqueta += '\n'
